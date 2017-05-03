@@ -1,0 +1,75 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <!-- to get rid of favicon request in console -->
+  <link rel="shortcut icon" href="">
+
+  <!-- P5 STUFF -->
+  <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="sketch.js"></script>
+
+  <!-- SOCKET STUFF -->
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+  <script type="text/javascript">
+
+    var socket = io.connect();
+    
+    socket.on('connect', function() {
+      console.log("Connected");
+    });
+
+
+    socket.on('motion', function(data) {
+      //receive x & y position
+      theX = data.x;
+      theY = data.y;    
+    });
+
+  </script>
+
+  <style> 
+
+  @font-face {
+    font-family: sketch_3d; 
+    src: url(../sketch/sketch_3d.woff);
+  }
+
+  body {
+    padding: 0; 
+    margin: 0;
+    color: plum;
+  }
+
+  .container{
+    position:absolute;
+    z-index:5;
+    margin-left: 1em;
+  }
+
+  h1 {
+    font-family: sketch_3d;
+    font-size: 10em;  
+    color: white; 
+    margin-left: 80px;
+  }
+
+  h2 {
+    font-size: 5em;
+    color: white;
+    font-family: 'Helvetica', monospace;
+    margin-left: 2em;
+  }
+
+  </style>
+</head>
+
+<body>
+  <h1> shake me </h1>
+  <h2> I change colors </h2>
+   
+  <div class="container"></div>
+ 
+</body>
+</html>
